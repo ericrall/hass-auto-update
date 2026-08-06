@@ -1,0 +1,29 @@
+- id: auto_install_update_on_available
+  alias: Auto Install Updates
+  description: >-
+    Install any update.* entity as soon as it becomes available, and
+    re-sweep every hour as a self-healing backstop so a single missed
+    event or failed install attempt gets retried automatically. Scoped to
+    the update domain via template (no per-entity/per-integration list to
+    maintain as new update.* entities appear).
+  triggers:
+  - platform: template
+    id: update_available
+    value_template: >-
+      {{ states.update | selectattr('state', 'eq', 'on') | map(attribute='entity_id') | sort | join(',') }}
+  - platform: time_pattern
+    id: periodic_sweep
+    hours: '/1'
+  conditions: []
+  actions:
+  - repeat:
+      for_each: >-
+        {{ states.update | selectattr('state', 'eq', 'on') | map(attribute='entity_id') | list }}
+      sequence:
+      - action: update.install
+        continue_on_error: true
+        target:
+          entity_id: '{{ repeat.item }}'
+      - delay: '00:00:30'
+  mode: queued
+  max: 10
