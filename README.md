@@ -11,10 +11,13 @@ months.
 ## Why
 
 Home Assistant surfaces pending updates as `update.*` entities, but actually
-installing them is still a manual click per entity — unless you enable
-auto-update on each one individually and remember to do it again every time
-a new integration or add-on shows up. This automation covers the whole
-`update` domain generically instead.
+installing them is still a manual click per entity. That's true even for
+HACS-managed integrations — neither Home Assistant Core nor HACS
+auto-installs anything on its own (Supervisor is the one exception) — so
+without something like this, those sit there until you click install by
+hand, same as everything else. This automation covers the whole `update`
+domain generically instead, with nothing to configure per-integration and
+nothing to redo as new entities show up.
 
 ## The automation
 
@@ -85,6 +88,15 @@ your scheduled backups.)
 Paste the automation into `automations.yaml` directly, or add it via
 **Settings → Automations → Edit in YAML** in the UI, then reload
 automations (or restart).
+
+## Alternatives
+
+If you want maintenance windows, an exclusion list, or an automatic backup
+step built into the automation itself, see
+[edwardtfn/ha_auto_update_scheduled](https://github.com/edwardtfn/ha_auto_update_scheduled) —
+more configurable, more moving parts. This repo is the other end of that
+trade-off: zero configuration and nothing to maintain, at the cost of those
+controls.
 
 ## License
 
