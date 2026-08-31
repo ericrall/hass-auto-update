@@ -1,6 +1,18 @@
-# This repo still lives in iCloud. Read before you move it.
+# MOVED OUT OF iCLOUD — 2026-08-31
 
-**Status: NOT YET MOVED.** `~/Documents` has Desktop & Documents sync ON, so every repo
+**This repo now lives at `~/Developer/hass-auto-update`.** It was moved out of `~/Documents` on
+2026-08-31 together with the other 11 repos that were still there; nothing is left in
+`~/Documents`. The move was a same-volume rename (nothing was iCloud-evicted), verified by
+comparing HEAD, dirty-file count and file count before and after, with a `git bundle --all`
+of every repo taken first (kept in `~/.repo-archive-20260831/`).
+
+Anything below describes the state BEFORE the move and is kept only as the measurement
+record. If you find a path pointing into `~/Documents/`, it is stale — fix it.
+
+---
+
+
+**Status (historical): NOT YET MOVED.** `~/Documents` has Desktop & Documents sync ON, so every repo
 here grows iCloud conflict copies — files named `foo 2.py` beside `foo.py`, untracked and
 not gitignored. They shadow real modules: a grep returns two answers and you can quote the
 stale one without noticing. Anything that walks the working tree (an AST check, a linter, a
