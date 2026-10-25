@@ -1,5 +1,11 @@
 # hass-auto-update
 
+> **Superseded by [ha-smart-updater](https://github.com/rall-digital/ha-smart-updater).**
+> Installing every update the moment it appears is exactly how Home Assistant Core 2026.10.3, which broke
+> the Lutron Caséta integration, landed on our house with no backup, no health check and no rollback.
+> ha-smart-updater keeps add-ons/OS/HACS on this simple path but gives Core an AI preflight, a health-checked
+> install and an automatic rollback. If you use this automation, read that first.
+
 A minimal Home Assistant automation that auto-installs every pending update —
 Core, OS, Supervisor, add-ons, and HACS-managed integrations — as soon as
 it's available, with an hourly resweep so a missed event or a failed install
